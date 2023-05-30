@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { PDFViewer } from '@react-pdf/renderer';
+import MyPDFDocument from "./components/MyPDFDocument";
+import ReportData1 from './assets/samples/report1.json'
+import ReportData2 from './assets/samples/report2.json'
+import { useCallback, useState } from 'react';
 
-function App() {
+function MyApp() {
+  const [report, setReport] = useState({})
+  const onUpdateReport = useCallback((type = 'report1') => {
+    if (type == 'report1') {
+      setReport(ReportData1)
+    } else {
+      setReport(ReportData2)
+    }
+  }, [ReportData1, ReportData2])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>My React Application</h1>
+      <div>
+        <button onClick={() => onUpdateReport('report1')}>
+          Report1
+        </button>
+        <button onClick={onUpdateReport}>
+          Report2
+        </button>
+      </div>
+      <PDFViewer>
+        <MyPDFDocument data={report} />
+      </PDFViewer>
     </div>
   );
 }
 
-export default App;
+export default MyApp
