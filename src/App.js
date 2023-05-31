@@ -1,5 +1,5 @@
 import { PDFViewer } from '@react-pdf/renderer';
-import MyPDFDocument from "./components/MyPDFDocument";
+import ReportPDF from "./components/reports";
 import ReportData1 from './assets/samples/report1.json'
 import ReportData2 from './assets/samples/report2.json'
 import { useCallback, useState } from 'react';
@@ -25,7 +25,7 @@ function MyApp() {
         </button>
       </div>
       <PDFViewer>
-        <MyPDFDocument data={report} />
+        <ReportPDF data={report} />          
       </PDFViewer>
     </div>
   );
