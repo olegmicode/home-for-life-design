@@ -1,5 +1,4 @@
-import React, { useMemo, useState } from "react";
-import RePage from "../common/Page";
+import React, { useMemo } from "react";
 import { Text, View } from "@react-pdf/renderer";
 import useHtmlToText from "../../../hooks/useHtmlToText";
 

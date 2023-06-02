@@ -1,20 +1,24 @@
 import { View, Text } from "@react-pdf/renderer";
+import { useMemo } from "react";
 
 // Create Document Component
 const PageFooter = () => {
+  const styles = useMemo(() => ({
+    position: "absolute",
+    fontSize: 12,
+    bottom: 20,
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    color: "grey",
+  }));
   return (
-    <View
-      style={{
-        fontSize: 10,
-        paddingTop: 10,
-        paddingBottom: 20,
-        paddingLeft: 30,
-        paddingRight: 30,
-        textAlign: "center",
-      }}
-      fixed={true}
-    >
-      <Text>Footer Section - Page numbers go here</Text>
+    <View style={styles} fixed={true}>
+      <Text
+        style={styles.pageNumber}
+        render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+        fixed
+      />
     </View>
   );
 };

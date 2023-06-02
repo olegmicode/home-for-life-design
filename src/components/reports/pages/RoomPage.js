@@ -1,8 +1,16 @@
 import React, { useMemo } from "react";
-import RePage from "../common/Page";
-import { Text, View } from "@react-pdf/renderer";
+import { Image, Text, View } from "@react-pdf/renderer";
+import useHtmlToText from "../../../hooks/useHtmlToText";
 
 const RoomPage = ({ room }) => {
+  const {
+    roomRecommendations,
+    preassessmentNotes,
+    postassessmentNotes,
+    roomPhotos,
+  } = room;
+  const preassessmentNotesText = useHtmlToText(preassessmentNotes);
+  const postassessmentNotesText = useHtmlToText(postassessmentNotes);
   const styles = useMemo(
     () => ({
       wrapper: {
@@ -113,7 +121,6 @@ const RoomPage = ({ room }) => {
       recommendations: {
         wrapper: {
           fontSize: 12,
-          paddingRight: 15,
           marginBottom: 40,
         },
         title: {
@@ -127,10 +134,50 @@ const RoomPage = ({ room }) => {
           left: 30,
         },
       },
+      initalAssessment: {
+        wrapper: {
+          fontSize: 12,
+          marginBottom: 40,
+        },
+        title: {
+          fontSize: 14,
+          marginBottom: 7,
+        },
+        content: {},
+      },
+      followupAssessment: {
+        wrapper: {
+          fontSize: 12,
+          marginBottom: 40,
+        },
+        title: {
+          fontSize: 14,
+          marginBottom: 7,
+        },
+        content: {},
+      },
+      photos: {
+        wrapper: {
+          fontSize: 12,
+          marginBottom: 40,
+        },
+        title: {
+          fontSize: 14,
+          marginBottom: 7,
+        },
+        content: {},
+        roomPhotos: {
+          wrapper: {},
+          image: {
+            marginVertical: 10,
+            marginHorizontal: 50,
+          },
+        },
+      },
     }),
     []
   );
-  const { roomRecommendations } = room;
+  console.log("[roomPhotos]", roomPhotos);
   return (
     <View style={styles.wrapper} break>
       {/* Room and Scoring Summary */}
@@ -208,24 +255,44 @@ const RoomPage = ({ room }) => {
         <Text style={styles.recommendations.title}>Room Recommendations:</Text>
         <View style={styles.recommendations.content}>
           {roomRecommendations.map((recommend) => (
-            <Text>
+            <Text key={recommend.name}>
               •{"  "}
               {recommend.name}
             </Text>
           ))}
         </View>
       </View>
-      <View style={styles.recommendations.wrapper}>
-        <Text style={styles.recommendations.title}>
+      <View style={styles.initalAssessment.wrapper}>
+        <Text style={styles.initalAssessment.title}>
           Initial Assessment Notes:
         </Text>
-        <View style={styles.recommendations.content}>
-          {roomRecommendations.map((recommend) => (
-            <Text>
-              •{"  "}
-              {recommend.name}
-            </Text>
-          ))}
+        <View style={styles.initalAssessment.content}>
+          {preassessmentNotesText}
+        </View>
+      </View>
+      <View style={styles.followupAssessment.wrapper}>
+        <Text style={styles.followupAssessment.title}>
+          Follow-up Assessment Notes:
+        </Text>
+        <View style={styles.followupAssessment.content}>
+          {postassessmentNotesText}
+        </View>
+      </View>
+      <View style={styles.photos.wrapper}>
+        <Text style={styles.photos.title}>Photos</Text>
+        <View style={styles.photos.content}>
+          <Text>
+            To view full size photos, click on the report link in footer
+          </Text>
+          <View style={styles.photos.roomPhotos.wrapper}>
+            {roomPhotos.map(({ fileName }) => (
+              <Image
+                key={fileName}
+                src={fileName}
+                style={styles.photos.roomPhotos.image}
+              />
+            ))}
+          </View>
         </View>
       </View>
     </View>
