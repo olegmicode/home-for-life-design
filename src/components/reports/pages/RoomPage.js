@@ -7,7 +7,7 @@ const RoomPage = ({ room }) => {
     roomRecommendations,
     preassessmentNotes,
     postassessmentNotes,
-    roomPhotos,
+    roomPhotoBlobs,
   } = room;
   const preassessmentNotesText = useHtmlToText(preassessmentNotes);
   const postassessmentNotesText = useHtmlToText(postassessmentNotes);
@@ -169,15 +169,19 @@ const RoomPage = ({ room }) => {
         roomPhotos: {
           wrapper: {},
           image: {
-            marginVertical: 10,
-            marginHorizontal: 50,
+            marginVertical: 0,
+            marginHorizontal: 75,
+            width: 400,
+            height: 400,
+            objectFit: "cover",
           },
         },
       },
     }),
     []
   );
-  console.log("[roomPhotos]", roomPhotos);
+  console.log("[roomPhotoBlobs]", roomPhotoBlobs);
+
   return (
     <View style={styles.wrapper} break>
       {/* Room and Scoring Summary */}
@@ -285,13 +289,33 @@ const RoomPage = ({ room }) => {
             To view full size photos, click on the report link in footer
           </Text>
           <View style={styles.photos.roomPhotos.wrapper}>
-            {roomPhotos.map(({ fileName }) => (
+            {roomPhotoBlobs.map((base64, idx) => (
               <Image
-                key={fileName}
-                src={fileName}
+                key={idx}
+                src={base64}
                 style={styles.photos.roomPhotos.image}
               />
             ))}
+            {/* {roomPhotos.map(({ fileName }) => (
+              <Image
+                key={fileName}
+                src={async () => {
+                  const blob = await fetch(fileName).then((res) => res.blob());
+                  return URL.createObjectURL(blob);
+                }}
+                style={styles.photos.roomPhotos.image}
+              /> 
+               <Image
+                 key={fileName}
+                 src={{
+                   uri: fileName,
+                   method: "GET",
+                   headers: { "Cache-Control": "no-cache" },
+                   body: "",
+                 }}
+                 style={styles.photos.roomPhotos.image}
+               />
+             ))}*/}
           </View>
         </View>
       </View>

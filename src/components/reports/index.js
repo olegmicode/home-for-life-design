@@ -6,13 +6,15 @@ import RePage from "./common/Page";
 // Create Document Component
 const ReportPDF = ({ data }) => {
   const { rooms } = data;
+  console.log("[ReportPDF]", rooms);
   return (
     <ReDocument wrap>
       <RePage data={data}>
         <SummaryPage data={data} />
-        {rooms.map((room) => (
-          <RoomPage key={room.roomName + room.location} room={room} />
-        ))}
+        {rooms &&
+          rooms.map((room) => (
+            <RoomPage key={room.roomName + room.location} room={room} />
+          ))}
       </RePage>
     </ReDocument>
   );

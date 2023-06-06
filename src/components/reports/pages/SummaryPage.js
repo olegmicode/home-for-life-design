@@ -33,7 +33,7 @@ const StartPage = ({ data }) => {
   } = data;
   const clientNoteText = useHtmlToText(clientNote);
   const additionalServiceText = useHtmlToText(additionalClientRecommendations);
-  console.log("[additionalServiceText]", additionalServiceText);
+  console.log("[concernList]", concernList);
 
   const styles = useMemo(
     () => ({
@@ -445,33 +445,38 @@ const StartPage = ({ data }) => {
         </View>
       </View>
       {/* Concerns List */}
-      <View style={styles.concernList.wrapper} wrap={false}>
-        <Text style={styles.concernList.title}>Concerns List</Text>
-        <View style={styles.concernList.table}>
-          <View style={styles.concernList.tableHeaderRow}>
-            <View style={styles.concernList.tableCol1}>
-              <Text style={styles.concernList.tableCell}>Concern</Text>
-            </View>
-            <View style={styles.concernList.tableCol2}>
-              <Text style={styles.concernList.tableCell}>Note</Text>
-            </View>
-          </View>
-          {concernList.map((concern) => (
-            <View key={concern.concernName} style={styles.concernList.tableRow}>
+      {concernList && (
+        <View style={styles.concernList.wrapper} wrap={false}>
+          <Text style={styles.concernList.title}>Concerns List</Text>
+          <View style={styles.concernList.table}>
+            <View style={styles.concernList.tableHeaderRow}>
               <View style={styles.concernList.tableCol1}>
-                <Text style={styles.concernList.tableCell}>
-                  {concern.concernName}
-                </Text>
+                <Text style={styles.concernList.tableCell}>Concern</Text>
               </View>
               <View style={styles.concernList.tableCol2}>
-                <Text style={styles.concernList.tableCell}>
-                  {concern.concernNote}
-                </Text>
+                <Text style={styles.concernList.tableCell}>Note</Text>
               </View>
             </View>
-          ))}
+            {concernList.map((concern) => (
+              <View
+                key={concern.concernName}
+                style={styles.concernList.tableRow}
+              >
+                <View style={styles.concernList.tableCol1}>
+                  <Text style={styles.concernList.tableCell}>
+                    {concern.concernName}
+                  </Text>
+                </View>
+                <View style={styles.concernList.tableCol2}>
+                  <Text style={styles.concernList.tableCell}>
+                    {concern.concernNote}
+                  </Text>
+                </View>
+              </View>
+            ))}
+          </View>
         </View>
-      </View>
+      )}
 
       {/* Room and Scoring Summary */}
       <View style={styles.roomSummary.wrapper} wrap={false}>
@@ -521,38 +526,39 @@ const StartPage = ({ data }) => {
               </View>
             </View>
           </View>
-          {rooms.map((room) => (
-            <View
-              key={room.roomName + room.location}
-              style={styles.roomSummary.tableRow}
-            >
-              <View style={styles.roomSummary.tableCol1}>
-                <Text style={styles.roomSummary.tableCell}>
-                  {room.roomName}: {room.location}
-                </Text>
+          {rooms &&
+            rooms.map((room) => (
+              <View
+                key={room.roomName + room.location}
+                style={styles.roomSummary.tableRow}
+              >
+                <View style={styles.roomSummary.tableCol1}>
+                  <Text style={styles.roomSummary.tableCell}>
+                    {room.roomName}: {room.location}
+                  </Text>
+                </View>
+                <View style={styles.roomSummary.tableCol2}>
+                  <Text style={styles.roomSummary.tableCell}>
+                    {room.roomPreassessmentSafetyScore || "N/A"}
+                  </Text>
+                </View>
+                <View style={styles.roomSummary.tableCol3}>
+                  <Text style={styles.roomSummary.tableCell}>
+                    {room.roomPreassessmentAccessibilityScore || "N/A"}
+                  </Text>
+                </View>
+                <View style={styles.roomSummary.tableCol2}>
+                  <Text style={styles.roomSummary.tableCell}>
+                    {room.roomPostassessmentSafetyScore || "N/A"}
+                  </Text>
+                </View>
+                <View style={styles.roomSummary.tableCol3}>
+                  <Text style={styles.roomSummary.tableCell}>
+                    {room.roomPostassessmentAccessibilityScore || "N/A"}
+                  </Text>
+                </View>
               </View>
-              <View style={styles.roomSummary.tableCol2}>
-                <Text style={styles.roomSummary.tableCell}>
-                  {room.roomPreassessmentSafetyScore || "N/A"}
-                </Text>
-              </View>
-              <View style={styles.roomSummary.tableCol3}>
-                <Text style={styles.roomSummary.tableCell}>
-                  {room.roomPreassessmentAccessibilityScore || "N/A"}
-                </Text>
-              </View>
-              <View style={styles.roomSummary.tableCol2}>
-                <Text style={styles.roomSummary.tableCell}>
-                  {room.roomPostassessmentSafetyScore || "N/A"}
-                </Text>
-              </View>
-              <View style={styles.roomSummary.tableCol3}>
-                <Text style={styles.roomSummary.tableCell}>
-                  {room.roomPostassessmentAccessibilityScore || "N/A"}
-                </Text>
-              </View>
-            </View>
-          ))}
+            ))}
         </View>
       </View>
       <View style={styles.clientSummary.wrapper}>
