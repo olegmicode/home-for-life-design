@@ -4,11 +4,10 @@ import "./App.css";
 import { useCallback, useState } from "react";
 import ReactModal from "react-modal";
 
-function MyApp() {
+function PDFReportApp() {
   const report = useReportData();
   const [showModal, setShowModal] = useState(false);
 
-  console.log("[document]", report);
   const handleOpenModal = useCallback(() => {
     setShowModal(true);
   }, []);
@@ -16,11 +15,6 @@ function MyApp() {
     setShowModal(false);
   }, []);
 
-  // return report.rooms ? (
-  //   <Preview data={report}>This is test</Preview>
-  // ) : (
-  //   <>Loading ...</>
-  // );
   return (
     <div className="">
       <button
@@ -48,11 +42,11 @@ function MyApp() {
           </div>
         </div>
         <div className="report-modal-content">
-          <Preview data={report} />
+          {report.rooms && <Preview data={report} />}
         </div>
       </ReactModal>
     </div>
   );
 }
 
-export default MyApp;
+export default PDFReportApp;
