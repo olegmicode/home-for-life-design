@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { getReportAPIData } from "../services/fetch";
+import Resizer from "react-image-file-resizer";
 
 const useReportData = () => {
   const [report, setReport] = useState({});
@@ -9,6 +10,21 @@ const useReportData = () => {
   }, []);
 
   useEffect(() => {
+    const resizeFile = (file) =>
+      new Promise((resolve) => {
+        Resizer.imageFileResizer(
+          file,
+          1000,
+          1000,
+          "JPEG",
+          98,
+          0,
+          (uri) => {
+            resolve(uri);
+          },
+          "base64"
+        );
+      });
     (async () => {
       if (reportCode) {
         const data = await getReportAPIData(reportCode);
@@ -19,11 +35,12 @@ const useReportData = () => {
               room.roomPhotos.map(async ({ fileName }) => {
                 try {
                   const blob = await fetch(fileName).then((res) => res.blob());
-                  return new Promise((res) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => res(reader.result);
-                    reader.readAsDataURL(blob);
-                  });
+                  // return new Promise((res) => {
+                  //   const reader = new FileReader();
+                  //   reader.onloadend = () => res(reader.result);
+                  //   reader.readAsDataURL(blob);
+                  // });
+                  return resizeFile(blob);
                 } catch (error) {
                   return null;
                 }

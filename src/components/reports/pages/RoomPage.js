@@ -296,26 +296,6 @@ const RoomPage = ({ room }) => {
                 style={styles.photos.roomPhotos.image}
               />
             ))}
-            {/* {roomPhotos.map(({ fileName }) => (
-              <Image
-                key={fileName}
-                src={async () => {
-                  const blob = await fetch(fileName).then((res) => res.blob());
-                  return URL.createObjectURL(blob);
-                }}
-                style={styles.photos.roomPhotos.image}
-              /> 
-               <Image
-                 key={fileName}
-                 src={{
-                   uri: fileName,
-                   method: "GET",
-                   headers: { "Cache-Control": "no-cache" },
-                   body: "",
-                 }}
-                 style={styles.photos.roomPhotos.image}
-               />
-             ))}*/}
           </View>
         </View>
       </View>
