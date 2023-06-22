@@ -15,7 +15,7 @@ const useReportData = () => {
         Resizer.imageFileResizer(
           file,
           1000,
-          1000,
+          1400,
           "JPEG",
           98,
           0,

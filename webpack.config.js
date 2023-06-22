@@ -1,6 +1,7 @@
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const glob = require("glob");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -19,5 +20,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new UglifyJsPlugin()],
+  plugins: [
+    new UglifyJsPlugin(),
+    new CopyPlugin({
+      patterns: [
+        { from: "build/static/css/*.css", to: "build/static/css/main.css" },
+      ],
+    }),
+  ],
 };

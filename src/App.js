@@ -24,6 +24,20 @@ function PDFReportApp() {
       >
         Preview Report
       </button>
+      {/* <div>
+        {report.rooms &&
+          report.rooms.map((r) => {
+            return (
+              <div>
+                {r.roomPhotoBlobs.map((blob) => (
+                  <div>
+                    <img src={blob} />
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+      </div> */}
       <ReactModal isOpen={showModal} contentLabel="PDF report preview">
         <div className="report-close-btn-wrapper">
           <div

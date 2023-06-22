@@ -539,22 +539,30 @@ const StartPage = ({ data }) => {
                 </View>
                 <View style={styles.roomSummary.tableCol2}>
                   <Text style={styles.roomSummary.tableCell}>
-                    {room.roomPreassessmentSafetyScore || "N/A"}
+                    {room.roomPreassessmentSafetyScore
+                      ? `${room.roomPreassessmentSafetyScore} %`
+                      : "N/A"}
                   </Text>
                 </View>
                 <View style={styles.roomSummary.tableCol3}>
                   <Text style={styles.roomSummary.tableCell}>
-                    {room.roomPreassessmentAccessibilityScore || "N/A"}
+                    {room.roomPreassessmentAccessibilityScore
+                      ? `${room.roomPreassessmentAccessibilityScore} %`
+                      : "N/A"}
                   </Text>
                 </View>
                 <View style={styles.roomSummary.tableCol2}>
                   <Text style={styles.roomSummary.tableCell}>
-                    {room.roomPostassessmentSafetyScore || "N/A"}
+                    {room.roomPostassessmentSafetyScore
+                      ? `${room.roomPostassessmentSafetyScore} %`
+                      : "N/A"}
                   </Text>
                 </View>
                 <View style={styles.roomSummary.tableCol3}>
                   <Text style={styles.roomSummary.tableCell}>
-                    {room.roomPostassessmentAccessibilityScore || "N/A"}
+                    {room.roomPostassessmentAccessibilityScore
+                      ? `${room.roomPostassessmentAccessibilityScore} %`
+                      : "N/A"}
                   </Text>
                 </View>
               </View>

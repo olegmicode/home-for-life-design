@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { Image, Text, View } from "@react-pdf/renderer";
 import useHtmlToText from "../../../hooks/useHtmlToText";
-
 const RoomPage = ({ room }) => {
   const {
     roomRecommendations,
@@ -172,8 +171,8 @@ const RoomPage = ({ room }) => {
             marginVertical: 0,
             marginHorizontal: 75,
             width: 400,
-            height: 400,
-            objectFit: "cover",
+            height: 640,
+            objectFit: "contain",
           },
         },
       },
@@ -234,22 +233,30 @@ const RoomPage = ({ room }) => {
             </View>
             <View style={styles.roomSect.tableCol2}>
               <Text style={styles.roomSect.tableCell}>
-                {room.roomPreassessmentSafetyScore || "N/A"}
+                {room.roomPreassessmentSafetyScore
+                  ? `${room.roomPreassessmentSafetyScore} %`
+                  : "N/A"}
               </Text>
             </View>
             <View style={styles.roomSect.tableCol3}>
               <Text style={styles.roomSect.tableCell}>
-                {room.roomPreassessmentAccessibilityScore || "N/A"}
+                {room.roomPreassessmentAccessibilityScore
+                  ? `${room.roomPreassessmentAccessibilityScore} %`
+                  : "N/A"}
               </Text>
             </View>
             <View style={styles.roomSect.tableCol2}>
               <Text style={styles.roomSect.tableCell}>
-                {room.roomPostassessmentSafetyScore || "N/A"}
+                {room.roomPostassessmentSafetyScore
+                  ? `${room.roomPostassessmentSafetyScore} %`
+                  : "N/A"}
               </Text>
             </View>
             <View style={styles.roomSect.tableCol3}>
               <Text style={styles.roomSect.tableCell}>
-                {room.roomPostassessmentAccessibilityScore || "N/A"}
+                {room.roomPostassessmentAccessibilityScore
+                  ? `${room.roomPostassessmentAccessibilityScore} %`
+                  : "N/A"}
               </Text>
             </View>
           </View>

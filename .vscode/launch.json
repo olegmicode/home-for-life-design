@@ -1,15 +1,22 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:3000/?code=1129091E-EEF7-40EC-AC69-8064ACAB0A2C",
-            "webRoot": "${workspaceFolder}"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Report 1",
+      "url": "http://localhost:3000/?code=1129091E-EEF7-40EC-AC69-8064ACAB0A2C",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Report 2",
+      "url": "http://localhost:3000/?code=68E9770F-124D-447F-9DA2-6F0A88937B02",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
 }
