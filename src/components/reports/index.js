@@ -6,7 +6,7 @@ import RePage from "./common/Page";
 // Create Document Component
 const ReportPDF = ({ data }) => {
   const { rooms } = data;
-  console.log("[ReportPDF]", rooms);
+
   return (
     <ReDocument wrap>
       <RePage data={data}>

@@ -48,7 +48,7 @@ const useReportData = () => {
             );
             room.roomPhotoBlobs = roomPhotoBlobs;
           }
-          setReport(data);
+          setReport({ reportCode, ...data });
         }
       }
     })();

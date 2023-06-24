@@ -3,10 +3,11 @@ import { Text, View } from "@react-pdf/renderer";
 import useHtmlToText from "../../../hooks/useHtmlToText";
 
 const StartPage = ({ data }) => {
-  // console.log("[data]", data);
+  console.log("[data]", data);
   const {
     therapistName,
     partnerOrganizationName,
+    partnerUserEmail,
     clientStreetName,
     clientHousingType,
     clientNumberFloors,
@@ -41,6 +42,16 @@ const StartPage = ({ data }) => {
         fontSize: 12,
         paddingRight: 15,
         marginBottom: 40,
+        textAlign: "center",
+        title: {
+          fontSize: 18,
+          fontWeight: 900,
+        },
+        subtitle: {
+          fontSize: 16,
+          marginTop: 10,
+          color: "#333333",
+        },
       },
       generalInfo: {
         wrapper: {
@@ -317,22 +328,16 @@ const StartPage = ({ data }) => {
     <View>
       {/* header1 information */}
       <View style={styles.hero}>
-        <Text>
-          {therapistName} of {partnerOrganizationName}, has conducted the
-          following home assessment using the Home for Life Design® solution.
-          This home evaluation identifies barriers in each room of the home,
-          provides client-centric solution recommendations, and produces metrics
-          to determine the client's safety and accessibility in each room of the
-          home. These metrics are also used to help clients, families, and
-          caregivers prioritize which areas in the home need the most care and
-          attention. Information was gathered via a professional interview with
-          the client and/or family members, objective measurements, photos,
-          activity analysis and/or verbal demonstration
+        <Text style={styles.hero.title}>
+          {therapistName} of {partnerOrganizationName}
+        </Text>
+        <Text style={styles.hero.subtitle}>
+          Client Information: {partnerUserEmail}
         </Text>
       </View>
       {/* general information */}
       <View style={styles.generalInfo.wrapper}>
-        <Text style={styles.generalInfo.title}>General Information</Text>
+        <Text style={styles.generalInfo.title}>General</Text>
         <View style={styles.generalInfo.table}>
           <View style={styles.generalInfo.tableRow}>
             <View style={styles.generalInfo.tableCol}>

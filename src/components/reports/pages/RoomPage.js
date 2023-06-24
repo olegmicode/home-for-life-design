@@ -179,7 +179,6 @@ const RoomPage = ({ room }) => {
     }),
     []
   );
-  console.log("[roomPhotoBlobs]", roomPhotoBlobs);
 
   return (
     <View style={styles.wrapper} break>
