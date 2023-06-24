@@ -1,24 +1,27 @@
-import { View, Text, Link } from "@react-pdf/renderer";
 import { useMemo } from "react";
+import { View, Text, Link } from "@react-pdf/renderer";
 
 // Create Document Component
 const PageFooter = ({ data }) => {
   const { reportCode } = data;
-  const styles = useMemo(() => ({
-    links: {
-      fontSize: 10,
-      marginBottom: 10,
-    },
-    wrapper: {
-      position: "absolute",
-      fontSize: 10,
-      bottom: 20,
-      left: 0,
-      right: 0,
-      textAlign: "center",
-      color: "grey",
-    },
-  }));
+  const styles = useMemo(
+    () => ({
+      links: {
+        fontSize: 10,
+        marginBottom: 10,
+      },
+      wrapper: {
+        position: "absolute",
+        fontSize: 10,
+        bottom: 20,
+        left: 0,
+        right: 0,
+        textAlign: "center",
+        color: "grey",
+      },
+    }),
+    []
+  );
   return (
     <View style={styles.wrapper} fixed={true}>
       <Link

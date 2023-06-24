@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import { Image, Text, View } from "@react-pdf/renderer";
 import useHtmlToText from "../../../hooks/useHtmlToText";
-const RoomPage = ({ room }) => {
+
+const RoomPage = ({ room, roomNumber }) => {
   const {
     roomRecommendations,
     preassessmentNotes,
@@ -10,6 +11,26 @@ const RoomPage = ({ room }) => {
   } = room;
   const preassessmentNotesText = useHtmlToText(preassessmentNotes);
   const postassessmentNotesText = useHtmlToText(postassessmentNotes);
+
+  const titleStyles = useMemo(
+    () => ({
+      backgroundColor: "#6984c2",
+      borderColor: "#5a70a3",
+      fontSize: 16,
+      marginBottom: 7,
+
+      color: "#FFFFFF",
+      paddingLeft: 8,
+      paddingRight: 4,
+      paddingTop: 4,
+      paddingBottom: 0,
+      display: "inline",
+      marginRight: "auto",
+      borderWidth: 2,
+      fontWeight: 500,
+    }),
+    []
+  );
   const styles = useMemo(
     () => ({
       wrapper: {
@@ -17,15 +38,20 @@ const RoomPage = ({ room }) => {
         paddingRight: 15,
         marginBottom: 40,
       },
+
       roomSect: {
         wrapper: {
           fontSize: 12,
           paddingRight: 15,
           marginBottom: 26,
         },
+        heading: {
+          fontSize: 16,
+          marginBottom: 10,
+          fontWeight: "bold",
+        },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         description: {
           marginBottom: 10,
@@ -123,8 +149,7 @@ const RoomPage = ({ room }) => {
           marginBottom: 40,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         assertiveDevices: {
           marginLeft: 20,
@@ -139,8 +164,7 @@ const RoomPage = ({ room }) => {
           marginBottom: 40,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         content: {},
       },
@@ -150,8 +174,7 @@ const RoomPage = ({ room }) => {
           marginBottom: 40,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         content: {},
       },
@@ -161,8 +184,7 @@ const RoomPage = ({ room }) => {
           marginBottom: 40,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         content: {},
         roomPhotos: {
@@ -177,15 +199,18 @@ const RoomPage = ({ room }) => {
         },
       },
     }),
-    []
+    [titleStyles]
   );
 
   return (
     <View style={styles.wrapper} break>
       {/* Room and Scoring Summary */}
       <View style={styles.roomSect.wrapper}>
+        <Text style={styles.roomSect.heading}>
+          {roomNumber}. {room.roomName}
+        </Text>
         <Text style={styles.roomSect.title}>
-          Home Recommendations Based Upon Findings:
+          Home Recommendations Based Upon Findings
         </Text>
 
         <View style={styles.roomSect.table}>
@@ -262,7 +287,7 @@ const RoomPage = ({ room }) => {
         </View>
       </View>
       <View style={styles.recommendations.wrapper}>
-        <Text style={styles.recommendations.title}>Room Recommendations:</Text>
+        <Text style={styles.recommendations.title}>Room Recommendations</Text>
         <View style={styles.recommendations.content}>
           {roomRecommendations.map((recommend) => (
             <Text key={recommend.name}>
@@ -274,7 +299,7 @@ const RoomPage = ({ room }) => {
       </View>
       <View style={styles.initalAssessment.wrapper}>
         <Text style={styles.initalAssessment.title}>
-          Initial Assessment Notes:
+          Initial Assessment Notes
         </Text>
         <View style={styles.initalAssessment.content}>
           {preassessmentNotesText}
@@ -282,7 +307,7 @@ const RoomPage = ({ room }) => {
       </View>
       <View style={styles.followupAssessment.wrapper}>
         <Text style={styles.followupAssessment.title}>
-          Follow-up Assessment Notes:
+          Follow-up Assessment Notes
         </Text>
         <View style={styles.followupAssessment.content}>
           {postassessmentNotesText}

@@ -36,12 +36,33 @@ const StartPage = ({ data }) => {
   const additionalServiceText = useHtmlToText(additionalClientRecommendations);
   console.log("[concernList]", concernList);
 
+  const titleStyles = useMemo(
+    () => ({
+      backgroundColor: "#6984c2",
+      borderColor: "#5a70a3",
+      fontSize: 16,
+      marginBottom: 7,
+
+      color: "#FFFFFF",
+      paddingLeft: 8,
+      paddingRight: 4,
+      paddingTop: 4,
+      paddingBottom: 0,
+      display: "inline",
+      marginRight: "auto",
+      borderWidth: 2,
+      fontWeight: 500,
+    }),
+    []
+  );
+
   const styles = useMemo(
     () => ({
       hero: {
         fontSize: 12,
         paddingRight: 15,
         marginBottom: 40,
+        marginTop: 20,
         textAlign: "center",
         title: {
           fontSize: 18,
@@ -59,10 +80,7 @@ const StartPage = ({ data }) => {
           paddingRight: 15,
           marginBottom: 26,
         },
-        title: {
-          fontSize: 14,
-          marginBottom: 7,
-        },
+        title: { ...titleStyles },
         table: {
           display: "table",
           width: "auto",
@@ -97,8 +115,7 @@ const StartPage = ({ data }) => {
           marginBottom: 40,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         assertiveDevices: {
           marginLeft: 20,
@@ -111,8 +128,7 @@ const StartPage = ({ data }) => {
           marginBottom: 26,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         table: {
           display: "table",
@@ -148,8 +164,7 @@ const StartPage = ({ data }) => {
           marginBottom: 26,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         description: {
           marginBottom: 10,
@@ -200,8 +215,7 @@ const StartPage = ({ data }) => {
           marginBottom: 26,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         description: {
           marginBottom: 10,
@@ -300,8 +314,7 @@ const StartPage = ({ data }) => {
           marginBottom: 40,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         assertiveDevices: {
           marginLeft: 20,
@@ -314,15 +327,14 @@ const StartPage = ({ data }) => {
           marginBottom: 40,
         },
         title: {
-          fontSize: 14,
-          marginBottom: 7,
+          ...titleStyles,
         },
         assertiveDevices: {
           marginLeft: 20,
         },
       },
     }),
-    []
+    [titleStyles]
   );
   return (
     <View>
@@ -337,7 +349,15 @@ const StartPage = ({ data }) => {
       </View>
       {/* general information */}
       <View style={styles.generalInfo.wrapper}>
+        {/* <View
+          style={{
+            display: "block",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        > */}
         <Text style={styles.generalInfo.title}>General</Text>
+        {/* </View> */}
         <View style={styles.generalInfo.table}>
           <View style={styles.generalInfo.tableRow}>
             <View style={styles.generalInfo.tableCol}>
@@ -387,7 +407,7 @@ const StartPage = ({ data }) => {
       {/* Special Considerations */}
       <View style={styles.specialConsiderations.wrapper}>
         <Text style={styles.specialConsiderations.title}>
-          Special Considerations:
+          Special Considerations
         </Text>
         <Text>Inaccessible Areas: {clientInaccessibleAreas}</Text>
         <Text>Assistive Devices:</Text>
@@ -485,7 +505,7 @@ const StartPage = ({ data }) => {
 
       {/* Room and Scoring Summary */}
       <View style={styles.roomSummary.wrapper} wrap={false}>
-        <Text style={styles.roomSummary.title}>Room and Scoring Summary:</Text>
+        <Text style={styles.roomSummary.title}>Room and Scoring Summary</Text>
         <Text style={styles.roomSummary.description}>
           The following assessed rooms each indicate the Personal Safety Rating
           verbally given by the client and the Accessibility Rating of the
@@ -575,12 +595,12 @@ const StartPage = ({ data }) => {
         </View>
       </View>
       <View style={styles.clientSummary.wrapper}>
-        <Text style={styles.clientSummary.title}>Client Summary:</Text>
+        <Text style={styles.clientSummary.title}>Client Summary</Text>
         <Text> {clientNoteText}</Text>
       </View>
       <View style={styles.clientSummary.wrapper}>
         <Text style={styles.clientSummary.title}>
-          Additional Services Recommendations:
+          Additional Services Recommendations
         </Text>
         <Text> {additionalServiceText}</Text>
       </View>

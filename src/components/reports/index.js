@@ -1,3 +1,4 @@
+import { Font } from "@react-pdf/renderer";
 import ReDocument from "./common/Document";
 import SummaryPage from "./pages/SummaryPage";
 import RoomPage from "./pages/RoomPage";
@@ -12,8 +13,12 @@ const ReportPDF = ({ data }) => {
       <RePage data={data}>
         <SummaryPage data={data} />
         {rooms &&
-          rooms.map((room) => (
-            <RoomPage key={room.roomName + room.location} room={room} />
+          rooms.map((room, i) => (
+            <RoomPage
+              key={room.roomName + room.location}
+              room={room}
+              roomNumber={i + 1}
+            />
           ))}
       </RePage>
     </ReDocument>

@@ -1,9 +1,11 @@
 import { useMemo } from "react";
 import { View, Text, Image } from "@react-pdf/renderer";
+import FloridaLogo from "../../../assets/logos/FACIL_Logo.png";
 
 // Create Document Component
 const PageHeader = ({ data }) => {
   const { partnerOrganizationName, partnerLogo } = data;
+
   const styles = useMemo(
     () => ({
       wrapper: {
@@ -32,14 +34,15 @@ const PageHeader = ({ data }) => {
             fontSize: 10,
             alignItems: "center",
             color: "#777777",
-            marginTop: 12,
-            marginBottom: 12,
+            marginTop: 16,
+            marginBottom: 16,
           },
           heading: {
             paddingRight: 2,
           },
           logo: {
             width: 130,
+            height: 30,
           },
         },
         licience: {
@@ -47,7 +50,16 @@ const PageHeader = ({ data }) => {
           color: "#777777",
         },
       },
-      partnerInfo: {},
+      partnerInfo: {
+        logo: {
+          width: "auto",
+          height: "100%",
+        },
+        wrapper: {
+          padding: 0,
+          height: 70,
+        },
+      },
     }),
     []
   );
@@ -55,8 +67,8 @@ const PageHeader = ({ data }) => {
 
   return (
     <View style={styles.wrapper} fixed={true}>
-      <View style={styles.partnerInfo}>
-        <Text style={styles.title}>{partnerOrganizationName}</Text>
+      <View style={styles.partnerInfo.wrapper}>
+        <Image src={FloridaLogo} style={styles.partnerInfo.logo} />
       </View>
       <View style={styles.companyInfo.wrapper}>
         <Text style={styles.companyInfo.title}>Home Assessment Report</Text>
